@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-
 import styled from "styled-components";
+import { useEffect } from "react";
 
 const StyledAgeGroupSelectContainer = styled.div`
   display: flex;
@@ -18,7 +17,7 @@ function AgeGroupSelect({ handleGroupChange, ageGroup }) {
   let startAge = ageGroup[0];
   let endAge = ageGroup[1];
 
-  const ageOptions = Array.from({ length: 21 }, (_, i) => i); // Creates an array [0, 1, 2, ..., 20]
+  const ageOptions = Array.from({ length: 21 }, (_, i) => i);
 
   const handleStartAgeChange = (e) => {
     handleGroupChange([
@@ -34,14 +33,9 @@ function AgeGroupSelect({ handleGroupChange, ageGroup }) {
     ]);
   };
 
-  useEffect(() => {
-    handleGroupChange([startAge, endAge]);
-  }, [startAge, endAge]);
-
   return (
     <StyledAgeGroupSelectContainer>
       <StyledAgeWrapper>
-        {/* <label>Start Age: </label> */}
         <StyledSelect value={startAge} onChange={handleStartAgeChange}>
           {ageOptions.map((age) =>
             age <= endAge ? (
@@ -58,7 +52,6 @@ function AgeGroupSelect({ handleGroupChange, ageGroup }) {
       </StyledAgeWrapper>
       ~
       <StyledAgeWrapper>
-        {/* <label>End Age: </label> */}
         <StyledSelect value={endAge} onChange={handleEndAgeChange}>
           {ageOptions.map((age) =>
             age >= startAge ? (
